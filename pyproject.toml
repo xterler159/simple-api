@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "simple-api"
+version = "0.1.0"
+description = ""
+authors = ["Kevin FERNANDO <kfernando-prestataire@seres.fr>"]
+readme = "README.md"
+packages = [{include = "simple_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.100.1"
+click = "^8.1.6"
+sqlalchemy = "^2.0.19"
+uvicorn = "^0.23.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+api = "simple_api.command:cli"
