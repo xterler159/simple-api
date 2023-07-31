@@ -6,6 +6,6 @@ def users_router():
 
     @router.get("/")
     async def root_users():
-        return "users root"
+        return {"users:": []}
 
     return router
