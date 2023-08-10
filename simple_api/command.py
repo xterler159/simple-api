@@ -1,10 +1,7 @@
 import click
 
-from dotenv import load_dotenv, dotenv_values
 
 from simple_api.api.app import Application
-
-load_dotenv()
 
 
 @click.group()
@@ -13,8 +10,9 @@ def cli():
 
 
 @click.command()
-def start():
-    PORT = int(dotenv_values().get("PORT"))
+@click.option("--port", default=8100)
+def start(port):
+    PORT = int(port)
     click.echo("Starting the development server...")
 
     app = Application(port=PORT)

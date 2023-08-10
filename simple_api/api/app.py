@@ -10,11 +10,11 @@ class Application:
         self.port = port
 
     def start(self):
-        fast_api_app = FastAPI(title="simple app")
-        fast_api_app.include_router(router=users.users_router(), prefix="/users")
+        app = FastAPI(title="simple app")
+        app.include_router(users.users_router())
 
-        @fast_api_app.get("/")
-        def root():
-            return {"Hello": "World"}
+        uvicorn.run(port=self.port, app=app)
 
-        uvicorn.run(port=self.port, app=fast_api_app)
+
+def create_app():
+    return None
