@@ -1,7 +1,5 @@
 import click
-
-
-from simple_api.api.app import Application
+import uvicorn
 
 
 @click.group()
@@ -13,10 +11,10 @@ def cli():
 @click.option("--port", default=8100)
 def start(port):
     PORT = int(port)
-    click.echo("Starting the development server...")
+    app_entry_point = "simple_api.api.application:create_app"
 
-    app = Application(port=PORT)
-    app.start()
+    click.echo("Starting the development server...")
+    uvicorn.run(app=app_entry_point, port=PORT, reload=True)
 
 
 cli.add_command(start)

@@ -1,20 +1,21 @@
-import uvicorn
-
 from fastapi import FastAPI
 
-from .router import users
+from simple_api.api.router import users
 
 
 class Application:
     def __init__(self, port):
         self.port = port
 
-    def start(self):
+    @staticmethod
+    def start():
         app = FastAPI(title="simple app")
         app.include_router(users.users_router())
-
-        uvicorn.run(port=self.port, app=app)
+        return app
 
 
 def create_app():
-    return None
+    app = FastAPI(title="simple app")
+    app.include_router(users.users_router())
+
+    return Application.start()
